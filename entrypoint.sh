@@ -10,9 +10,7 @@ echo $USER
 echo $GROUP
 
 if [ -z "$1" ]; then
-  echo "\nNo arguments\n"
+  exec supervisord -c /etc/supervisord.conf -n
 else
-  echo "\nArguments: " $@ "\n"
+  exec gosu $USER "$@"
 fi
-
-exec docker-php-entrypoint "$@"
